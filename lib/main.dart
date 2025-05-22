@@ -1,3 +1,4 @@
+import 'package:disnet_manager/features/homescreen/views/homescreen.dart';
 import 'package:disnet_manager/usecases/init_pb.dart';
 import 'package:flutter/material.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
@@ -26,11 +27,7 @@ class MainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
-      home: Scaffold(
-        body: Center(
-          child: Text('Hello World!'),
-        ),
-      ),
+      home: Homescreen(),
     );
   }
 }

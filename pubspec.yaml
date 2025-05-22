@@ -4,11 +4,22 @@ publish_to: 'none'
 version: 0.1.0
 
 environment:
-  sdk: ^3.7.2
+  sdk: ^3.6.0
 
 dependencies:
+  collection: ^1.19.0
   flutter:
     sdk: flutter
+  flutter_bloc: ^9.1.0
+  flutter_dotenv: ^5.2.1
+  flutter_keyboard_visibility: ^6.0.0
+  flutter_secure_storage: ^9.2.4
+  gradient_borders: ^1.0.1
+  hydrated_bloc: ^10.0.0
+  path_provider: ^2.1.5
+  pocketbase: ^0.22.0
+  sentry_flutter: ^8.14.2
+  toastification: ^3.0.2
 
 dev_dependencies:
   flutter_test:

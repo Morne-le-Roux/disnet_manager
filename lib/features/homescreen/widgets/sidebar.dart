@@ -1,8 +1,10 @@
 import 'package:disnet_manager/features/app/widgets/logo.dart';
+import 'package:disnet_manager/features/debug/debug_screen.dart';
 import 'package:disnet_manager/features/fishroom/views/fishroom_overview.dart';
 import 'package:disnet_manager/features/homescreen/views/dashboard.dart';
 import 'package:disnet_manager/features/placeholder/views/placeholder_overview.dart';
 import 'package:disnet_manager/models/constants.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 class Sidebar extends StatefulWidget {
@@ -25,7 +27,10 @@ class _SidebarState extends State<Sidebar> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          _Header(),
+          FittedBox(
+            fit: BoxFit.scaleDown,
+            child: _Header(),
+          ),
           _Tile(
             title: "Dashboard",
             subtitle: "Home",
@@ -51,6 +56,18 @@ class _SidebarState extends State<Sidebar> {
             },
             isSelected: widget.overview is PlaceholderOverview,
           ),
+          Expanded(child: SizedBox()),
+          kDebugMode
+              ? _Tile(
+                  title: "Debug",
+                  subtitle: "Debug",
+                  icon: Icons.bug_report,
+                  isSelected: widget.overview is DebugScreen,
+                  onTap: () {
+                    widget.onTileTap(DebugScreen());
+                  },
+                )
+              : SizedBox(),
         ],
       ),
     );

@@ -80,7 +80,7 @@ class _CounterWidgetState extends State<CounterWidget>
                     : widget.prefix +
                         formatNumber(_animation.value.toInt()).toString(),
                 style: Constants.textStyles.massive
-                    .copyWith(fontSize: 60, fontWeight: FontWeight.w800),
+                    .copyWith(fontSize: 60, fontWeight: FontWeight.w700),
               );
             },
           ),
@@ -88,7 +88,7 @@ class _CounterWidgetState extends State<CounterWidget>
             wrapText(widget.title, 10),
             maxLines: 2,
             textAlign: TextAlign.center,
-            style: Constants.textStyles.massive.copyWith(height: 1),
+            style: Constants.textStyles.title.copyWith(height: 1),
           ),
           SizedBox(height: 10),
           if (widget.subtitle != null)

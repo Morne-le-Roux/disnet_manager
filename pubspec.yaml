@@ -20,6 +20,7 @@ dependencies:
   path_provider: ^2.1.5
   pocketbase: ^0.22.0
   sentry_flutter: ^8.14.2
+  supabase_flutter: ^2.9.0
   toastification: ^3.0.2
 
 dev_dependencies:

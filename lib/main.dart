@@ -1,5 +1,5 @@
 import 'package:disnet_manager/features/homescreen/views/homescreen.dart';
-import 'package:disnet_manager/usecases/init_pb.dart';
+import 'package:disnet_manager/usecases/init_sb.dart';
 import 'package:flutter/material.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:path_provider/path_provider.dart';
@@ -16,7 +16,7 @@ void main() async {
   );
 
   await initEnv();
-  await initPB();
+  await initSB();
 
   runAppWithWrappers(MainApp());
 }

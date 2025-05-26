@@ -1,56 +1,66 @@
+import 'package:disnet_manager/features/homescreen/cubit/dashboard_cubit.dart';
 import 'package:disnet_manager/models/constants.dart';
 import 'package:disnet_manager/widgets/counter_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-class Dashboard extends StatelessWidget {
+class Dashboard extends StatefulWidget {
   const Dashboard({super.key});
 
   @override
+  State<Dashboard> createState() => _DashboardState();
+}
+
+class _DashboardState extends State<Dashboard> {
+  @override
+  void initState() {
+    super.initState();
+    context.read<DashboardCubit>().getUsers();
+    context.read<DashboardCubit>().getSubscriptions();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: [
-        Container(
-          padding: EdgeInsets.only(left: 20, top: 10, bottom: 10),
-          child: Text(
-            "Dashboard",
-            textAlign: TextAlign.left,
-            style: Constants.textStyles.massive.copyWith(fontSize: 60),
-          ),
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(
+          "Dashboard",
+          style: Constants.textStyles.title,
         ),
-        Divider(color: Constants.colors.border),
-        Column(
-          children: [
-            Container(
-              width: double.infinity,
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: Wrap(
-                spacing: 20,
-                runSpacing: 20,
-                alignment: WrapAlignment.spaceEvenly,
-                crossAxisAlignment: WrapCrossAlignment.start,
-                children: [
-                  CounterWidget(
-                      count: 1522, title: "Users", subtitle: "across all apps"),
-                  CounterWidget(
-                      count: 300, title: "Subscriptions", subtitle: "Active"),
-                  CounterWidget(
-                      count: 1,
-                      prefix: "\$",
-                      title: "Projected",
-                      subtitle: "Monthly Revenue"),
-                  CounterWidget(
-                      count: 100,
-                      prefix: "\$",
-                      title: "Revenue",
-                      subtitle: "All Time"),
-                ],
-              ),
+      ),
+      body: Column(
+        children: [
+          Container(
+            width: double.infinity,
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child: BlocBuilder<DashboardCubit, DashboardState>(
+              builder: (context, state) {
+                return Wrap(
+                  spacing: 20,
+                  runSpacing: 20,
+                  alignment: WrapAlignment.spaceEvenly,
+                  crossAxisAlignment: WrapCrossAlignment.start,
+                  children: [
+                    CounterWidget(
+                        count: state.userCount,
+                        title: "Users",
+                        subtitle: "across all apps"),
+                    CounterWidget(
+                        count: state.subscriptionCount,
+                        title: "Subscriptions",
+                        subtitle: "Active"),
+                    CounterWidget(
+                        count: state.projectedRevenue?.toInt(),
+                        prefix: "\$",
+                        title: "Projected",
+                        subtitle: "Monthly Revenue"),
+                  ],
+                );
+              },
             ),
-            Divider()
-          ],
-        ),
-      ],
+          ),
+        ],
+      ),
     );
   }
 }
